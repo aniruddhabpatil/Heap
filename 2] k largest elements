@@ -1,0 +1,29 @@
+// https://practice.geeksforgeeks.org/problems/k-largest-elements4206/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+
+vector<int> kLargest(int arr[], int n, int k) {
+	    // code here
+	    priority_queue<int,vector<int>,greater<int>> minh;
+        	    
+	    vector<int> ans;
+	    for(int i=0;i<n;i++)
+	    {
+	        minh.push(arr[i]);
+	        if(minh.size()>k)
+	        {
+	            //ans.push_back(minh.top());
+	            minh.pop();
+	        }
+	    }
+	    priority_queue<int> maxh; // we want answer in desc order
+	    while(minh.size()>0)
+	    {
+            maxh.push(minh.top());
+            minh.pop();
+	    }
+	    while(maxh.size()>0)
+	    {
+	        ans.push_back(maxh.top());
+            maxh.pop();
+	    }
+	    return ans;
+	}
