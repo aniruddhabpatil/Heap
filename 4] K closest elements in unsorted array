@@ -1,0 +1,23 @@
+// https://practice.geeksforgeeks.org/problems/20b8ec4db3f8da0697acdd3d54d9af9f76405443/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+
+// is array is unsorted use heap ,else if array is sorted use BS
+
+vector<int> Kclosest(vector<int>arr, int n, int x, int k) 
+    { 
+        // Your code goes here 
+        priority_queue<pair<int,int>> maxh;
+        vector<int> ans;
+        for(int i=0;i<n;i++)
+        {
+            maxh.push({abs(arr[i]-x),arr[i]});
+            if(maxh.size()>k)
+                maxh.pop();
+        }
+        while(maxh.size()>0)
+        {
+            ans.push_back(maxh.top().second);
+            maxh.pop();
+        }
+        sort(ans.begin(),ans.end());
+        return ans;
+    }  
