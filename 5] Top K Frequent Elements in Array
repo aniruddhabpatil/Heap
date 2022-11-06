@@ -1,0 +1,24 @@
+// https://practice.geeksforgeeks.org/problems/top-k-frequent-elements-in-array/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+
+vector<int> topK(vector<int>& nums, int k) {
+        // Code here
+        vector<int> ans;
+        map<int,int> mp;
+        int n=nums.size();
+        for(int i=0;i<n;i++)
+            mp[nums[i]]++;
+        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> minh;
+        for(auto i:mp)
+        {
+            minh.push({i.second,i.first});
+            if(minh.size()>k)
+                minh.pop();
+        }
+        while(minh.size()>0)
+        {
+            ans.push_back(minh.top().second);
+            minh.pop();
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
