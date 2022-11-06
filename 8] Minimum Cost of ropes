@@ -1,0 +1,19 @@
+// https://practice.geeksforgeeks.org/problems/minimum-cost-of-ropes-1587115620/1
+
+long long minCost(long long arr[], long long n) {
+        // Your code here
+        long long ans=0,i;
+        priority_queue<long long,vector<long long >,greater<long long>> minh;
+        for(i=0;i<n;i++)
+            minh.push(arr[i]);
+        while(minh.size()>1)
+        {
+            long long a1=minh.top();
+            minh.pop();
+            long long a2=minh.top();
+            minh.pop();
+            ans=ans+a1+a2;
+            minh.push(a1+a2);
+        }
+        return ans;
+    }
