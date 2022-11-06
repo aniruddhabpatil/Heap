@@ -1,0 +1,27 @@
+// https://practice.geeksforgeeks.org/problems/sum-of-elements-between-k1th-and-k2th-smallest-elements3133/1
+
+long long ksmallest(long long arr[], long long n, long long k)
+    {
+        priority_queue<long long> maxh;
+        for(long long i=0;i<n;i++)
+        {
+            maxh.push(arr[i]);
+            if(maxh.size()>k)
+                maxh.pop();
+        }
+        return maxh.top();
+    }
+    
+    long long sumBetweenTwoKth( long long a[], long long n, long long K1, long long K2)
+    {
+        // Your code goes here
+        long long k1=ksmallest(a,n,K1);
+        long long k2=ksmallest(a,n,K2);
+        long long ans=0;
+        for(long long i=0;i<n;i++)
+        {
+            if(a[i]>k1 && a[i]<k2)
+                ans+=a[i];
+        }
+        return ans;
+    }
